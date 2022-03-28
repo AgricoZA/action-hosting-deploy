@@ -111,10 +111,6 @@ async function run() {
       return;
     }
 
-    startGroup("Deploying Realtime Database rules");
-    await deployRealtimeDatabaseRules();
-    endGroup();
-
     const channelId = getChannelId(configuredChannelId, context);
 
     startGroup(`Deploying to Firebase preview channel ${channelId}`);
@@ -128,6 +124,10 @@ async function run() {
     if (deployment.status === "error") {
       throw Error((deployment as ErrorResult).error);
     }
+    endGroup();
+
+    startGroup("Deploying Realtime Database rules");
+    await deployRealtimeDatabaseRules();
     endGroup();
 
     const { expireTime, urls } = interpretChannelDeployResult(deployment);
