@@ -158,3 +158,13 @@ export async function deployProductionSite(
 
   return deploymentResult;
 }
+
+export async function deployRealtimeDatabaseRules() {
+  try {
+    await exec(
+      "firebase use amber-torch-6307 && firebase deploy --only database"
+    );
+  } catch (e) {
+    console.log(e.message);
+  }
+}

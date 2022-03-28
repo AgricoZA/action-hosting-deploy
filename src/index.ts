@@ -28,6 +28,7 @@ import { createGacFile } from "./createGACFile";
 import {
   deployPreview,
   deployProductionSite,
+  deployRealtimeDatabaseRules,
   ErrorResult,
   interpretChannelDeployResult,
 } from "./deploy";
@@ -109,6 +110,10 @@ async function run() {
       });
       return;
     }
+
+    startGroup("Deploying Realtime Database rules");
+    await deployRealtimeDatabaseRules();
+    endGroup();
 
     const channelId = getChannelId(configuredChannelId, context);
 
