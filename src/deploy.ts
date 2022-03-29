@@ -161,9 +161,8 @@ export async function deployProductionSite(
 
 export async function deployRealtimeDatabaseRules() {
   try {
-    await exec(
-      "npx firebase-tools use amber-torch-6307 && npx firebase-tools deploy database"
-    );
+    await exec("npx firebase-tools use amber-torch-6307 --debug");
+    await exec("npx firebase-tools deploy database --debug");
   } catch (e) {
     console.log(e.message);
   }
