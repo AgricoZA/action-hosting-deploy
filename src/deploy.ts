@@ -173,7 +173,7 @@ export async function deployRealtimeDatabaseRules(
   projectId: string
 ) {
   const deploymentText = await execWithCredentials(
-    ["deploy", "database"],
+    ["deploy"],
     projectId,
     gacFilename
   );
