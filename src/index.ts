@@ -127,10 +127,10 @@ async function run() {
     endGroup();
 
     startGroup("Deploying Realtime Database rules");
-    const deploymentRules = await deployRealtimeDatabaseRules(
-      gacFilename,
-      projectId
-    );
+    const deploymentRules = await deployRealtimeDatabaseRules(gacFilename, {
+      projectId,
+      target,
+    });
 
     if (deploymentRules.status === "error") {
       throw Error((deploymentRules as ErrorResult).error);

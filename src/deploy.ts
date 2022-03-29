@@ -170,10 +170,12 @@ export async function deployProductionSite(
 
 export async function deployRealtimeDatabaseRules(
   gacFilename: string,
-  projectId: string
+  productionDeployConfig: ProductionDeployConfig
 ) {
+  const { projectId, target } = productionDeployConfig;
+
   const deploymentText = await execWithCredentials(
-    ["deploy", "--only database"],
+    ["deploy", "--only", `database${target ? ":" + target : ""}`],
     projectId,
     gacFilename
   );
