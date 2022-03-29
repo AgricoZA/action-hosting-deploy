@@ -159,15 +159,6 @@ export async function deployProductionSite(
   return deploymentResult;
 }
 
-// export async function deployRealtimeDatabaseRules() {
-//   try {
-//     await exec("npx firebase-tools use amber-torch-6307 --debug");
-//     await exec("npx firebase-tools deploy database --debug");
-//   } catch (e) {
-//     console.log(e.message);
-//   }
-// }
-
 export async function deployRealtimeDatabaseRules(
   gacFilename: string,
   productionDeployConfig: ProductionDeployConfig
