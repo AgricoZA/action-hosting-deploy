@@ -127,7 +127,14 @@ async function run() {
     endGroup();
 
     startGroup("Deploying Realtime Database rules");
-    await deployRealtimeDatabaseRules();
+    const deploymentRules = await deployRealtimeDatabaseRules(
+      gacFilename,
+      projectId
+    );
+
+    if (deploymentRules.status === "error") {
+      throw Error((deploymentRules as ErrorResult).error);
+    }
     endGroup();
 
     const { expireTime, urls } = interpretChannelDeployResult(deployment);
