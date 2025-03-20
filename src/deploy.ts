@@ -75,8 +75,10 @@ async function execWithCredentials(
   let deployOutputBuf: Buffer[] = [];
 
   try {
+    await exec("npm cache clean --force");
+    await exec("npm install -g firebase-tools@13.33.0");
     await exec(
-      "npx firebase-tools",
+      "npx firebase-tools@13.33.0",
       [
         ...args,
         ...(projectId ? ["--project", projectId] : []),
